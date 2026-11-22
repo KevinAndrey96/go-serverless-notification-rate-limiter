@@ -3,6 +3,7 @@
 
 <div align="center">
 
+[![CI](https://github.com/KevinAndrey96/go-serverless-notification-rate-limiter/actions/workflows/ci.yml/badge.svg)](https://github.com/KevinAndrey96/go-serverless-notification-rate-limiter/actions/workflows/ci.yml)
 ![Go](https://img.shields.io/badge/Go-1.21-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![AWS Lambda](https://img.shields.io/badge/AWS%20Lambda-Serverless-FF9900?style=for-the-badge&logo=aws-lambda&logoColor=white)
 ![Serverless Framework](https://img.shields.io/badge/Serverless%20Framework-v3-FD5750?style=for-the-badge&logo=serverless&logoColor=white)
