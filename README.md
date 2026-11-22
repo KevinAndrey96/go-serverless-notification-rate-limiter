@@ -1,18 +1,29 @@
-# Rate limit notification service
+# ⚡ Go Serverless Notification Rate Limiter
+> **Event-Driven Rate-Limiting Microservice built with Go 1.21, Clean Architecture, AWS Lambda, DynamoDB & Amazon SES**
 
-We have a Notification system that sends out email notifications of various types (update, daily news, project invitations, etc). We need to protect recipients from getting too many emails, either due to system errors or due to abuse, so let's limit the number of emails sent to them by implementing a rate-limited version of NotificationService.
-The system must reject requests that are over the limit.
+<div align="center">
 
-Some sample notification types and rate limit rules, e.g.:
--   Status: not more than 2 per minute for each recipient
--   News: not more than 1 per day for each recipient
--   Marketing: not more than 3 per hour for each recipient
--   Etc. these are just samples, the system might have several rate limit rules!
+![Go](https://img.shields.io/badge/Go-1.21-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![AWS Lambda](https://img.shields.io/badge/AWS%20Lambda-Serverless-FF9900?style=for-the-badge&logo=aws-lambda&logoColor=white)
+![Serverless Framework](https://img.shields.io/badge/Serverless%20Framework-v3-FD5750?style=for-the-badge&logo=serverless&logoColor=white)
+![DynamoDB](https://img.shields.io/badge/Amazon%20DynamoDB-Database-4053D6?style=for-the-badge&logo=amazon-dynamodb&logoColor=white)
+![SES](https://img.shields.io/badge/Amazon%20SES-Email-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
-NOTES:
--   Your solution will be evaluated on code quality, clarity and development best practices.
--   Feel free to use the programming language, frameworks, technologies, etc that you feel more comfortable with.
--   Below you'll find a code snippet that can serve as a guidance of one of the implementation alternatives in Java. Feel free to use it if you find it useful or ignore it otherwise; it is not required to use it at all nor translate this code to your programming language.
+</div>
+
+---
+
+## 📌 Problem Statement
+
+In distributed systems dispatching high-volume email notifications (updates, newsletters, marketing campaigns, alerts), recipients and infrastructure must be protected against flooding, downstream service abuse, and accidental retry loops.
+
+This service implements a configurable, high-throughput **Rate-Limited Notification Engine** capable of enforcing fine-grained per-recipient rate limits by notification tier:
+- **Status Alerts:** Capped at 2 per minute per recipient.
+- **News Updates:** Capped at 1 per day per recipient.
+- **Marketing Messages:** Capped at 3 per hour per recipient.
+- **Dynamic Rules:** Extensible rule evaluation engine for custom tiering.
+
+Requests that exceed rate limits are safely rejected with audit metrics, while compliant messages are dispatched via Amazon SES.
 
 # Introduction
 
